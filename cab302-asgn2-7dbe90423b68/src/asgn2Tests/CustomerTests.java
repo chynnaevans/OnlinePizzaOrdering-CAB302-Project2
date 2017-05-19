@@ -2,7 +2,7 @@ package asgn2Tests;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
-import asgn2Customers.Customer;
+import asgn2Customers.*;
 import asgn2Exceptions.CustomerException;
 
 /**
