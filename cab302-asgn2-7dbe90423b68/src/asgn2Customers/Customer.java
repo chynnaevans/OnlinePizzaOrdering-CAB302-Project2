@@ -57,7 +57,7 @@ public abstract class Customer {
 	 * @return The Customer's name.
 	 */
 	public final String getName(){
-		// TO DO
+		return this.name;
 	}
 	
 	/**
@@ -65,7 +65,7 @@ public abstract class Customer {
 	 * @return The Customer's mobile number.
 	 */
 	public final String getMobileNumber(){
-		// TO DO
+		return this.mobileNumber;
 	}
 
 	/**
@@ -74,7 +74,7 @@ public abstract class Customer {
 	 * @return A human understandable description of the Customer's type.
 	 */
 	public final String getCustomerType(){
-		// TO DO
+		return this.type;
 	}
 	
 	/**
@@ -83,7 +83,7 @@ public abstract class Customer {
 	 * @return The Customer's X location
 	 */
 	public final int getLocationX(){
-		// TO DO
+		return this.locationX;
 	}
 
 	/**
@@ -92,7 +92,7 @@ public abstract class Customer {
 	 * @return The Customer's Y location
 	 */
 	public final int getLocationY(){
-		// TO DO
+		return this.locationY;
 	}
 
 	/**
