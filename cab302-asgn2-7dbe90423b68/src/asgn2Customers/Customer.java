@@ -8,7 +8,7 @@ import asgn2Exceptions.CustomerException;
  *  the abstract method getDeliveryDistance. A description of the class's
  * fields and their constraints is provided in Section 5.2 of the Assignment Specification.  
  * 
- * @author Person B
+ * @author Daniel Abreu
 */
 public abstract class Customer {
 
@@ -43,7 +43,7 @@ public abstract class Customer {
 		if(name.equals(" ") || name.length() > 20 ) throw new CustomerException("Name cannot be empty or longer than 20 characters");
 		if(mobileNumber.length() != 10 && mobileNumber.charAt(0) != 0 ) throw new CustomerException("Mobile phone must be in format 0XXXXXXXXX");
 		if(type.equals("PUC") && !(locationX == 0 && locationY == 0)) throw new CustomerException("Pick up customer location must be 0,0");
-		if((locationX == 0 && locationY == 0) && (type.equals("DNC") || type.equals("DVC")) throw new CustomerException("Delivery options are only for customers not located at the store");
+		if((locationX == 0 && locationY == 0) && (type.equals("DNC") || type.equals("DVC"))) throw new CustomerException("Delivery options are only for customers not located at the store");
 		
 		this.name = name;
 		this.mobileNumber = mobileNumber;

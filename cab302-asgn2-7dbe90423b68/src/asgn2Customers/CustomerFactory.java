@@ -15,7 +15,8 @@ import asgn2Exceptions.CustomerException;
 public class CustomerFactory {
 
 	/**
-	 * A method that uses the Factory Method pattern to produce an instance of one of the asgn2Customers.Customer subclasses. 
+	 * A method that uses the Factory Method pattern to 
+	 * produce an instance of one of the asgn2Customers.Customer subclasses. 
 	 * Subclasses are created using the customerCode. All valid customer codes are listed in Section 5.3 of the Assignment Specification.
 	 * A CustomerException should be thrown if an invalid customer code is used as a parameter. 
 	 * 
@@ -28,6 +29,20 @@ public class CustomerFactory {
 	 * @throws CustomerException if the customerCode is not one of the three valid codes listed in Section 5.3 of the Assignment Specification. 
 	 */
 	public static Customer getCustomer(String customerCode, String name, String mobileNumber, int locationX,  int locationY) throws CustomerException{
-		// TO DO
+		
+		try{
+			if(customerCode.equals("PUC")){
+				return new PickUpCustomer(name, mobileNumber, locationX, locationY);
+			}
+			else if (customerCode.equals("DNC")){
+				return new DroneDeliveryCustomer(name, mobileNumber, locationX, locationY);
+			}
+			else if (customerCode.equals("DVC")){
+				return new DriverDeliveryCustomer(name, mobileNumber, locationX, locationY);
+			}
+		} catch (Exception e) {
+			throw new CustomerException("Customer type must be of PUC, DNC or DVC");
+		}
+		return null;
 	}
 }
