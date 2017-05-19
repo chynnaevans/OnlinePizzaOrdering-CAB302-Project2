@@ -13,6 +13,14 @@ import asgn2Exceptions.CustomerException;
 public abstract class Customer {
 
 
+	private String name;
+	private String mobileNumber;
+	private int locationX;
+	private int locationY;
+	private String type;
+
+
+
 	/**
 	 *  This class represents a customer of the Pizza Palace restaurant.  A detailed description of the class's fields
 	 *  and parameters is provided in the Assignment Specification, in particular in Section 5.2. 
@@ -31,7 +39,17 @@ public abstract class Customer {
 	 * 
 	 */
 	public Customer(String name, String mobileNumber, int locationX, int locationY, String type) throws CustomerException{
-		// TO DO
+		
+		if(name.equals(" ") || name.length() > 20 ) throw new CustomerException("Name cannot be empty or longer than 20 characters");
+		if(mobileNumber.length() != 10 && mobileNumber.charAt(0) != 0 ) throw new CustomerException("Mobile phone must be in format 0XXXXXXXXX");
+		if(type.equals("PUC") && !(locationX == 0 && locationY == 0)) throw new CustomerException("Pick up customer location must be 0,0");
+		if((locationX == 0 && locationY == 0) && (type.equals("DNC") || type.equals("DVC")) throw new CustomerException("Delivery options are only for customers not located at the store");
+		
+		this.name = name;
+		this.mobileNumber = mobileNumber;
+		this.locationX = locationX;
+		this.locationY = locationY;
+		this.type = type;
 	}
 	
 	/**
