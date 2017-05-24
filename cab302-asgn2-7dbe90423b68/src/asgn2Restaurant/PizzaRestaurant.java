@@ -72,7 +72,7 @@ public class PizzaRestaurant {
 	 * @throws CustomerException if index is invalid.
 	 */
 	public Customer getCustomerByIndex(int index) throws CustomerException{
-		if(index < 0 || index > customers.size()) throw new CustomerException("index is out of bounds");
+		if(index < 0 || index-1 > customers.size()) throw new CustomerException("index is out of bounds");
 		return customers.get(index);
 	}
 	
@@ -83,7 +83,7 @@ public class PizzaRestaurant {
 	 * @throws PizzaException if index is invalid.
 	 */	
 	public Pizza getPizzaByIndex(int index) throws PizzaException{
-		if(index < 0 || index > pizzas.size()) throw new PizzaException("index is out of bounds");
+		if(index < 0 || index-1 > pizzas.size()) throw new PizzaException("index is out of bounds");
 		return pizzas.get(index);
 	}
 	
