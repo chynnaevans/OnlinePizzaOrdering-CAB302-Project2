@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import asgn2Customers.*;
 import asgn2Exceptions.CustomerException;
-import junit.framework.Assert;
 
 
 /**
@@ -16,21 +15,21 @@ import junit.framework.Assert;
 public class CustomerFactoryTests {
 	
 	@Test
-	public void TestgetCustomer_CorrectPUC(){
-		Customer c = CustomerFactory.getCustomer("PUC", "name", "0123456789", "0", "0");
-		Assert.assertTrue(c instanceof PickUpCustomer);
+	public void TestgetCustomer_CorrectPUC() throws CustomerException{
+		Customer c = CustomerFactory.getCustomer("PUC", "name", "0123456789", 0, 0);
+		assert(c instanceof PickUpCustomer);
 	}
 	
 	@Test
-	public void TestgetCustomer_CorrectDNC(){
-		Customer c = CustomerFactory.getCustomer("DNC", "name", "0123456789", "2", "2");
-		Assert.assertTrue(c instanceof PickUpCustomer);
+	public void TestgetCustomer_CorrectDNC() throws CustomerException{
+		Customer c = CustomerFactory.getCustomer("DNC", "name", "0123456789", 2, 2);
+		assert(c instanceof DroneDeliveryCustomer);
 	}
 	
 	@Test
-	public void TestgetCustomer_CorrectDVC(){
-		Customer c = CustomerFactory.getCustomer("DVC", "name", "0123456789", "2", "2");
-		Assert.assertTrue(c instanceof PickUpCustomer);
+	public void TestgetCustomer_CorrectDVC() throws CustomerException{
+		Customer c = CustomerFactory.getCustomer("DVC", "name", "0123456789", 2, 2);
+		assert(c instanceof DriverDeliveryCustomer);
 	}
 	
 }
