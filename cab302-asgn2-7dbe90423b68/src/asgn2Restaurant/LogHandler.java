@@ -1,12 +1,17 @@
 package asgn2Restaurant;
 
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import asgn2Customers.Customer;
+import asgn2Customers.CustomerFactory;
 import asgn2Exceptions.CustomerException;
 import asgn2Exceptions.LogHandlerException;
 import asgn2Exceptions.PizzaException;
 import asgn2Pizzas.Pizza;
+import asgn2Pizzas.PizzaFactory;
 
 /**
  *
@@ -30,7 +35,21 @@ public class LogHandler {
 	 * 
 	 */
 	public static ArrayList<Customer> populateCustomerDataset(String filename) throws CustomerException, LogHandlerException{
-		// TO DO
+		ArrayList<Customer> customers = new ArrayList<Customer>();
+		try {
+			String line;
+			BufferedReader br = new BufferedReader(new FileReader(filename));
+			do {
+				line = br.readLine();
+				customers.add(createCustomer(line));
+			} while(line != null);
+			
+			return customers;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}		
 
 	/**
@@ -42,9 +61,22 @@ public class LogHandler {
 	 * 
 	 */
 	public static ArrayList<Pizza> populatePizzaDataset(String filename) throws PizzaException, LogHandlerException{
-		// TO DO
-	}		
-
+		ArrayList<Pizza> pizzas = new ArrayList<Pizza>();
+		try {
+			String line;
+			BufferedReader br = new BufferedReader(new FileReader(filename));
+			do {
+				line = br.readLine();
+				pizzas.add(createPizza(line));
+			} while(line != null);
+			
+			return pizzas;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	/**
 	 * Creates a Customer object by parsing the  information contained in a single line of the log file. The format of 
@@ -55,7 +87,13 @@ public class LogHandler {
 	 * @throws LogHandlerException - If there was a problem parsing the line from the log file.
 	 */
 	public static Customer createCustomer(String line) throws CustomerException, LogHandlerException{
-		// TO DO
+		String[] custArr = line.split(",");
+		String name = custArr[2];
+		String mobileNumber = custArr[3];
+		String type = custArr[4];
+		int locationX = Integer.parseInt(custArr[5]);
+		int locationY = Integer.parseInt(custArr[6]);
+		return CustomerFactory.getCustomer(type, name, mobileNumber, locationX, locationY);
 	}
 	
 	/**
@@ -67,7 +105,13 @@ public class LogHandler {
 	 * @throws LogHandlerException - If there was a problem parsing the line from the log file.
 	 */
 	public static Pizza createPizza(String line) throws PizzaException, LogHandlerException{
-		// TO DO		
+		String[] pizzArr = line.split(",");
+		String pizzaCode = pizzArr[-2];
+		int quantity = Integer.parseInt(pizzArr[-1]);
+		LocalTime orderTime = LocalTime.parse(pizzArr[0]);
+		LocalTime deliveryTime = LocalTime.parse(pizzArr[1]);
+		return PizzaFactory.getPizza(pizzaCode, quantity, orderTime, deliveryTime);
+		
 	}
 
 }
