@@ -24,7 +24,7 @@ public class CustomerTests {
 	
 	@Test(expected = CustomerException.class)
 	public void TestCustomerConstructor_EmptyName() throws CustomerException{
-		Customer c = CustomerFactory.getCustomer("DVC", "", "0123456789", 2, 2);
+		Customer c = CustomerFactory.getCustomer("DVC", " ", "0123456789", 2, 2);
 	}
 	
 	@Test(expected = CustomerException.class)
@@ -50,6 +50,12 @@ public class CustomerTests {
 	@Test(expected = CustomerException.class)
 	public void TestCustomerConstructor_DeliveryAtRestaurant() throws CustomerException{
 		Customer c = CustomerFactory.getCustomer("DVC", "Name", "9123456789", 0, 0);
+	}
+	
+	@Test
+	public void TestGetName() throws CustomerException{
+		Customer c = CustomerFactory.getCustomer("DVC", "Name", "0123456789", 0, 0);
+		assert("name" == c.getName());
 	}
 	
 }
