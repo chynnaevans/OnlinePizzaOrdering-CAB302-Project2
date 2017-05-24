@@ -16,6 +16,8 @@ import asgn2Exceptions.CustomerException;
  */
 public class CustomerTests {
 	
+// ----- Abstract Customer Class ----- //
+	
 	@Test
 	public void TestCustomerConstructor_Correct() throws CustomerException{
 		Customer c = CustomerFactory.getCustomer("DVC", "name", "0123456789", 2, 2);
@@ -54,8 +56,108 @@ public class CustomerTests {
 	
 	@Test
 	public void TestGetName() throws CustomerException{
-		Customer c = CustomerFactory.getCustomer("DVC", "Name", "0123456789", 0, 0);
-		assert("name" == c.getName());
+		Customer c = CustomerFactory.getCustomer("DVC", "Name", "0123456789", 2, 2);
+		assert("Name" == c.getName());
+	}
+	
+	@Test
+	public void TestGetMobileNumber() throws CustomerException{
+		Customer c = CustomerFactory.getCustomer("DVC", "Name", "0123456789", 2, 2);
+		assert("0123456789" == c.getMobileNumber());
+	}
+	
+	@Test
+	public void TestGetMobileNumber() throws CustomerException{
+		Customer c = CustomerFactory.getCustomer("DVC", "Name", "0123456789", 2, 2);
+		assert("0123456789" == c.getMobileNumber());
+	}
+	
+	@Test
+	public void TestGetCustomerType() throws CustomerException{
+		Customer c = CustomerFactory.getCustomer("DVC", "Name", "0123456789", 2, 2);
+		assert("DVC" == c.getCustomerType());
+	}
+	
+	@Test
+	public void TestGetLocationX() throws CustomerException{
+		Customer c = CustomerFactory.getCustomer("DVC", "Name", "0123456789", 2, 2);
+		assert(2 == c.getLocationX());
+	}
+	
+	@Test
+	public void TestGetLocationY() throws CustomerException{
+		Customer c = CustomerFactory.getCustomer("DVC", "Name", "0123456789", 2, 2);
+		assert(2 == c.getLocationY());
+	}
+	
+// --------- Driver Delivery Customer -------- //
+	
+	@Test
+	public void TestDVCDeliveryDistance_Positive() throws CustomerException{
+		Customer c = CustomerFactory.getCustomer("DVC", "Name", "0123456789", 2, 2);
+		assert(4 == c.getDeliveryDistance());
+	}
+	
+	@Test
+	public void TestDVCDeliveryDistance_OneNegative() throws CustomerException{
+		Customer c = CustomerFactory.getCustomer("DVC", "Name", "0123456789", -2, 2);
+		assert(4 == c.getDeliveryDistance());
+	}
+	
+	@Test
+	public void TestDVCDeliveryDistance_BothNegative() throws CustomerException{
+		Customer c = CustomerFactory.getCustomer("DVC", "Name", "0123456789", -2, -2);
+		assert(4 == c.getDeliveryDistance());
+	}
+	
+// --------- Drone Delivery Customer -------- //
+
+	@Test
+	public void TestDNCDeliveryDistance_Postive() throws CustomerException{
+		Customer c = CustomerFactory.getCustomer("DNC", "Name", "0123456789", 3, 2);
+		assert( Math.sqrt(13) == c.getDeliveryDistance());
+	}
+	
+	@Test
+	public void TestDNCDeliveryDistance_OneNegative() throws CustomerException{
+		Customer c = CustomerFactory.getCustomer("DNC", "Name", "0123456789", 3, -2);
+		assert( Math.sqrt(13) == c.getDeliveryDistance());
+	}
+	
+	@Test
+	public void TestDNCDeliveryDistance_BothNegative() throws CustomerException{
+		Customer c = CustomerFactory.getCustomer("DNC", "Name", "0123456789", -3, -2);
+		assert( Math.sqrt(13) == c.getDeliveryDistance());
 	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
