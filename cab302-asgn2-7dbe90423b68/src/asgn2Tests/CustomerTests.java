@@ -17,37 +17,39 @@ import asgn2Exceptions.CustomerException;
 public class CustomerTests {
 	
 	@Test
-	public void TestCustomerConstructor_Correct(){
-		Customer c = new Customer("name", "0123456789", "2", "2", "DVC");
+	public void TestCustomerConstructor_Correct() throws CustomerException{
+		Customer c = CustomerFactory.getCustomer("DVC", "name", "0123456789", 2, 2);
+		assert(c instanceof DriverDeliveryCustomer);
 	}
 	
 	@Test(expected = CustomerException.class)
-	public void TestCustomerConstructor_EmptyName(){
-		Customer c = new Customer("", "0123456789", "2", "2", "DVC");
-	}
-	@Test(expected = CustomerException.class)
-	public void TestCustomerConstrctor_LongName(){
-		Customer c = new Customer("This name is too long!!", "0123456789", "2", "2", "DVC");
+	public void TestCustomerConstructor_EmptyName() throws CustomerException{
+		Customer c = CustomerFactory.getCustomer("DVC", "", "0123456789", 2, 2);
 	}
 	
 	@Test(expected = CustomerException.class)
-	public void TestCustomerConstrctor_BadNumber(){
-		Customer c = new Customer("Name", "9123456789", "2", "2", "DVC");
+	public void TestCustomerConstructor_LongName() throws CustomerException{
+		Customer c = CustomerFactory.getCustomer("DVC", "This name is too long!!!", "0123456789", 2, 2);
 	}
 	
 	@Test(expected = CustomerException.class)
-	public void TestCustomerConstrctor_LongNumber(){
-		Customer c = new Customer("Name", "0123456789876543210", "2", "2", "DVC");
+	public void TestCustomerConstructor_BadNumber() throws CustomerException{
+		Customer c = CustomerFactory.getCustomer("DVC", "Name", "9123456789", 2, 2);
+	}
+
+	@Test(expected = CustomerException.class)
+	public void TestCustomerConstructor_LongNumber() throws CustomerException{
+		Customer c = CustomerFactory.getCustomer("DVC", "Name", "0123456789876543210", 2, 2);
 	}
 	
 	@Test(expected = CustomerException.class)
-	public void TestCustomerConstrctor_PickUpNotAtRestaurant(){
-		Customer c = new Customer("Name", "0123456789", "2", "2", "PUC");
+	public void TestCustomerConstructor_PickUpNotAtRestaurant() throws CustomerException{
+		Customer c = CustomerFactory.getCustomer("PUC", "Name", "9123456789", 2, 2);
 	}
 	
 	@Test(expected = CustomerException.class)
-	public void TestCustomerConstrctor_DeliveryAtRestaurant(){
-		Customer c = new Customer("Name", "0123456789", "0", "0", "DVC");
+	public void TestCustomerConstructor_DeliveryAtRestaurant() throws CustomerException{
+		Customer c = CustomerFactory.getCustomer("DVC", "Name", "9123456789", 0, 0);
 	}
 	
 }
