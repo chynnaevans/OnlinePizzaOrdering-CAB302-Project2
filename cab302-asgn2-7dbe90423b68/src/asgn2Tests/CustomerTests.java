@@ -1,6 +1,5 @@
 package asgn2Tests;
 
-import static org.junit.Assert.*;
 import org.junit.Test;
 import asgn2Customers.*;
 import asgn2Exceptions.CustomerException;
@@ -66,11 +65,6 @@ public class CustomerTests {
 		assert("0123456789" == c.getMobileNumber());
 	}
 	
-	@Test
-	public void TestGetMobileNumber() throws CustomerException{
-		Customer c = CustomerFactory.getCustomer("DVC", "Name", "0123456789", 2, 2);
-		assert("0123456789" == c.getMobileNumber());
-	}
 	
 	@Test
 	public void TestGetCustomerType() throws CustomerException{
