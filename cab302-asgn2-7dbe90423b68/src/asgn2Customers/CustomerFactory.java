@@ -29,20 +29,18 @@ public class CustomerFactory {
 	 * @throws CustomerException if the customerCode is not one of the three valid codes listed in Section 5.3 of the Assignment Specification. 
 	 */
 	public static Customer getCustomer(String customerCode, String name, String mobileNumber, int locationX,  int locationY) throws CustomerException{
-		
-		try{
-			if(customerCode.equals("PUC")){
-				return new PickUpCustomer(name, mobileNumber, locationX, locationY);
-			}
-			else if (customerCode.equals("DNC")){
-				return new DroneDeliveryCustomer(name, mobileNumber, locationX, locationY);
-			}
-			else if (customerCode.equals("DVC")){
-				return new DriverDeliveryCustomer(name, mobileNumber, locationX, locationY);
-			}
-		} catch (Exception e) {
+
+		if(customerCode.equals("PUC")){
+			return new PickUpCustomer(name, mobileNumber, locationX, locationY);
+		}
+		else if (customerCode.equals("DNC")){
+			return new DroneDeliveryCustomer(name, mobileNumber, locationX, locationY);
+		}
+		else if (customerCode.equals("DVC")){
+			return new DriverDeliveryCustomer(name, mobileNumber, locationX, locationY);
+		}
+		else {
 			throw new CustomerException("Customer type must be of PUC, DNC or DVC");
 		}
-		return null;
 	}
 }

@@ -32,4 +32,9 @@ public class CustomerFactoryTests {
 		assert(c instanceof DriverDeliveryCustomer);
 	}
 	
+	@Test (expected = CustomerException.class)
+	public void TestgetCustomer_WrongCustomerType() throws CustomerException {
+		Customer c = CustomerFactory.getCustomer("AAA", "name", "0123456789", 0, 0);
+	}
+	
 }
