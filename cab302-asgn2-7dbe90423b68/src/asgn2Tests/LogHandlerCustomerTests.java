@@ -9,7 +9,7 @@ import asgn2Exceptions.*;
 /**
  * A class that tests the methods relating to the creation of Customer objects in the asgn2Restaurant.LogHander class.
  *
- * @author Person A
+ * @author Daniel Abreu
  */
 public class LogHandlerCustomerTests {
 	
@@ -26,9 +26,9 @@ public class LogHandlerCustomerTests {
 	
 	@Test
 	public void TestCreateCustomer_Correct() throws CustomerException, LogHandlerException {
-		Customer c = CustomerFactory.getCustomer("DVC", "Name", "0123456789", 2, 2);
-		Customer d = LogHandler.createCustomer("00:00:00,00:00:00,Name,0123456789,DVC,2,2,AAA,0");
-		assert(c.equals(d));
+		Customer test = CustomerFactory.getCustomer("DVC", "Name", "0123456789", 2, 2);
+		Customer c = LogHandler.createCustomer("00:00:00,00:00:00,Name,0123456789,DVC,2,2,AAA,0");
+		assert(test.equals(c));
 	}
 	
 	

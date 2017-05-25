@@ -70,7 +70,6 @@ public class LogHandler {
 				pizzas.add(createPizza(line));
 				line = br.readLine();
 			}
-			
 			return pizzas;
 			
 		} catch (Exception e) {
