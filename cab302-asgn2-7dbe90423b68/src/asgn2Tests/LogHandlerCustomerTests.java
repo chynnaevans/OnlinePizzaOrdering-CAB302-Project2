@@ -13,13 +13,15 @@ import asgn2Exceptions.*;
  */
 public class LogHandlerCustomerTests {
 	
-	final static String FILE = "customerTest.txt"; 
+	final static String FILE = ".//logs/customerTest.txt"; 
 	
 	@Test
 	public void TestPopulateCustomerDataset_Correct() throws CustomerException, LogHandlerException{
 		ArrayList<Customer> test = new ArrayList<Customer>();
 		test.add(CustomerFactory.getCustomer("DVC", "Name", "0123456789", 2, 2));
-		assert(test.equals(LogHandler.populateCustomerDataset(FILE)));
+		
+		ArrayList<Customer> c = LogHandler.populateCustomerDataset(FILE);
+		assert(test.equals(c));		
 	}
 	
 	@Test

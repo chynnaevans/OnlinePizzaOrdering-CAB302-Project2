@@ -37,13 +37,13 @@ public class LogHandler {
 	public static ArrayList<Customer> populateCustomerDataset(String filename) throws CustomerException, LogHandlerException{
 		ArrayList<Customer> customers = new ArrayList<Customer>();
 		try {
-			String line;
+			String line = new String("");
 			BufferedReader br = new BufferedReader(new FileReader(filename));
-			do {
-				line = br.readLine();
+			line = br.readLine();
+			while(line != null) {
 				customers.add(createCustomer(line));
-			} while(line != null);
-			
+				line = br.readLine();
+			}
 			return customers;
 
 		} catch (Exception e) {
@@ -65,10 +65,11 @@ public class LogHandler {
 		try {
 			String line;
 			BufferedReader br = new BufferedReader(new FileReader(filename));
-			do {
-				line = br.readLine();
+			line = br.readLine();
+			while(line != null) {
 				pizzas.add(createPizza(line));
-			} while(line != null);
+				line = br.readLine();
+			}
 			
 			return pizzas;
 			
