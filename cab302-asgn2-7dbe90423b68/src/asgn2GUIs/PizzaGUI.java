@@ -34,21 +34,57 @@ import javax.swing.*;
  */
 public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionListener {
 	
-	
 	private PizzaRestaurant restaurant;
+	private JFrame frame;
+	private JPanel pnl_main;
+	private JPanel pnl_buttons;
+	private BorderLayout windowLayout;
+	private GridLayout buttonLayout;
+	private JFileChooser fileChooser;
+	private JButton bttn_loadLog;
+	private JButton bttn_displayLog;
+	private JButton bttn_calculate;
+	private JButton bttn_reset;
 	
 	/**
 	 * Creates a new Pizza GUI with the specified title 
 	 * @param title - The title for the supertype JFrame
 	 */
 	public PizzaGUI(String title) {
-		// TO DO
+		frame = new JFrame(title);
+		pnl_main = new JPanel();
+		pnl_buttons = new JPanel();
+		windowLayout = new BorderLayout();
+		buttonLayout = new GridLayout(1,4);
+		fileChooser = new JFileChooser();
+		bttn_loadLog = new JButton("Load Logs");
+		bttn_displayLog = new JButton("Display Logs");
+		bttn_calculate = new JButton("Perform Calculation");
+		bttn_reset = new JButton("Reset Logs");
+		
+		frame.setSize(500,500);
+		frame.setContentPane(pnl_main);
+		pnl_main.setLayout(windowLayout);
+		pnl_buttons.setLayout(buttonLayout);
+	    
+		pnl_main.add(pnl_buttons, BorderLayout.NORTH);
+		pnl_buttons.add(bttn_loadLog);
+		pnl_buttons.add(bttn_displayLog);
+		pnl_buttons.add(bttn_calculate);
+		pnl_buttons.add(bttn_reset);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    frame.setVisible(true);
+
 	}
 
 	
 	@Override
 	public void run() {
-		// TO DO
+		
+		
+		
+		
+
 	}
 
 	
