@@ -93,6 +93,7 @@ public class LogHandler {
 		String type = custArr[4];
 		int locationX = Integer.parseInt(custArr[5]);
 		int locationY = Integer.parseInt(custArr[6]);
+		
 		return CustomerFactory.getCustomer(type, name, mobileNumber, locationX, locationY);
 	}
 	
@@ -110,6 +111,7 @@ public class LogHandler {
 		int quantity = Integer.parseInt(pizzArr[-1]);
 		LocalTime orderTime = LocalTime.parse(pizzArr[0]);
 		LocalTime deliveryTime = LocalTime.parse(pizzArr[1]);
+		
 		return PizzaFactory.getPizza(pizzaCode, quantity, orderTime, deliveryTime);
 		
 	}

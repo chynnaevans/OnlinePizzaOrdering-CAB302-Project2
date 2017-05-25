@@ -35,6 +35,8 @@ public class PizzaRestaurant {
 	public PizzaRestaurant() {
 		customers = new ArrayList<Customer>();
 		pizzas = new ArrayList<Pizza>();
+		customers.ensureCapacity(100);
+		pizzas.ensureCapacity(100);
 	}
 
 	/**
@@ -53,6 +55,7 @@ public class PizzaRestaurant {
      *
 	 */
 	public boolean processLog(String filename) throws CustomerException, PizzaException, LogHandlerException{
+		// populate the array list using LogHandler class
 		try{
 			customers = LogHandler.populateCustomerDataset(filename);
 			pizzas = LogHandler.populatePizzaDataset(filename);
