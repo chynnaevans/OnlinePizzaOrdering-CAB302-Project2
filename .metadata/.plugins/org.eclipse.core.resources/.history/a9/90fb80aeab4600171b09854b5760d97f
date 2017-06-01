@@ -90,7 +90,7 @@ public abstract class Pizza  {
 	 * @return The amount that an individual pizza costs to make.
 	 */
 	public final double getCostPerPizza(){
-		this.calculateCostPerPizza();
+		calculateCostPerPizza();
 		return this.cost;
 	}
 
@@ -101,9 +101,9 @@ public abstract class Pizza  {
 	public final double getPricePerPizza(){
 		if(this.type == "PZM"){
 			this.price = 8;
-		}else if(this.type == "PZL"){
+		} else if(this.type == "PZL"){
 			this.price = 12;
-		}else if(this.type == "PZV"){
+		} else if(this.type == "PZV"){
 			this.price = 10;
 		}
 		return this.price;

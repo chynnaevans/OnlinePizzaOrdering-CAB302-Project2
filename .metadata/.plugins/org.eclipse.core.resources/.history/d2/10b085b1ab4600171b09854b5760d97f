@@ -126,9 +126,9 @@ public class PizzaTests {
 	public void TestMagheritaCostperPizza() throws PizzaException{
 		LocalTime orderTime = LocalTime.now();
 		LocalTime deliverTime = LocalTime.now().plusMinutes(15);
-		Pizza c = PizzaFactory.getPizza("PZM", 10, orderTime, deliverTime);
-		double h = c.getCostPerPizza();
-		assert(h == 8);
+		Pizza c = PizzaFactory.getPizza("PZM", 20, orderTime, deliverTime);
+		double cost = c.getCostPerPizza();
+		assert(cost == 8.00);
 	}
 	
 }

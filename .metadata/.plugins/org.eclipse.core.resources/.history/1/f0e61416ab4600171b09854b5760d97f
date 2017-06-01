@@ -121,14 +121,5 @@ public class PizzaTests {
 		assert(c instanceof MargheritaPizza);
 	}
 	
-	//Pizza correctly calculates cost of Magherita pizza
-	@Test
-	public void TestMagheritaCostperPizza() throws PizzaException{
-		LocalTime orderTime = LocalTime.now();
-		LocalTime deliverTime = LocalTime.now().plusMinutes(15);
-		Pizza c = PizzaFactory.getPizza("PZM", 10, orderTime, deliverTime);
-		double h = c.getCostPerPizza();
-		assert(h == 8);
-	}
 	
 }

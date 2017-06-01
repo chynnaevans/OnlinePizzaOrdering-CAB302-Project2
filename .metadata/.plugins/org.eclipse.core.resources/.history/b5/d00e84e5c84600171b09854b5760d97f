@@ -127,8 +127,8 @@ public class PizzaTests {
 		LocalTime orderTime = LocalTime.now();
 		LocalTime deliverTime = LocalTime.now().plusMinutes(15);
 		Pizza c = PizzaFactory.getPizza("PZM", 10, orderTime, deliverTime);
-		double h = c.getCostPerPizza();
-		assert(h == 8);
+		//double h = c.getCostPerPizza();
+		assert(c.calculateCostPerPizza() == 8);
 	}
 	
 }
