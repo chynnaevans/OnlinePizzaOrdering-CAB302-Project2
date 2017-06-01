@@ -1,8 +1,7 @@
 package asgn2Pizzas;
 
 import java.time.LocalTime;
-
-
+import java.sql.Time;
 import java.time.Duration;
 import asgn2Pizzas.PizzaTopping;
 import asgn2Exceptions.PizzaException;
@@ -19,6 +18,9 @@ public abstract class Pizza  {
 	private int minOrder = 1; //at least 1 pizza must be ordered
 	private int maxOrder = 10; //no more than 10 pizzas may be ordered
 	private Duration maxTime = Duration.ofHours(1); //time before pizza must be thrown out
+	private Duration minTime = Duration.ofMinutes(10); //minimum time for delivery
+	private LocalTime open = LocalTime.MIN.plus(Duration.ofHours(7));
+	private LocalTime close = LocalTime.NOON.plus(Duration.ofHours(11));
 	
 	//Create variables so all methods can access them
 	private int quantity;
@@ -50,9 +52,13 @@ public abstract class Pizza  {
 	 */
 	public Pizza(int quantity, LocalTime orderTime, LocalTime deliveryTime, String type, double price) throws PizzaException{
 		LocalTime throwOutPizza = orderTime.plus(maxTime);
+		LocalTime invalidTime = orderTime.plus(minTime);
 		if (quantity < minOrder) throw new PizzaException("At least 1 pizza must be ordered");
 		if (quantity > maxOrder) throw new PizzaException("No more than 10 pizzas may be ordered");
 		if (deliveryTime.isAfter(throwOutPizza)) throw new PizzaException("An hour has elapsed, this pizza must be thrown out");
+		if(deliveryTime.isBefore(invalidTime)) throw new PizzaException("This pizza has not cooked yet");
+		if (orderTime.isBefore(open)) throw new PizzaException("The restaurant has not yet opened");
+		if (orderTime.isAfter(close)) throw new PizzaException("The restaurant has closed");
 		if (!(type == "PZM" || type == "PZL" || type == "PZV")) throw new PizzaException("This is an invalid pizza type");
 		
 		this.quantity = quantity;
