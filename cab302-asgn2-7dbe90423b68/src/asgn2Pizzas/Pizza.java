@@ -3,16 +3,33 @@ package asgn2Pizzas;
 import java.time.LocalTime;
 
 
+import java.time.Duration;
+import asgn2Pizzas.PizzaTopping;
+import asgn2Exceptions.PizzaException;
 /**
  * An abstract class that represents pizzas sold at the Pizza Palace restaurant. 
  * The Pizza class is used as a base class of VegetarianPizza, MargheritaPizza and MeatLoversPizza. 
  * Each of these subclasses have a different set of toppings. A description of the class's fields
  * and their constraints is provided in Section 5.1 of the Assignment Specification. 
  * 
- * @author Person A
+ * @author Chynna Evans
  *
  */
 public abstract class Pizza  {
+	private int minOrder = 1; //at least 1 pizza must be ordered
+	private int maxOrder = 10; //no more than 10 pizzas may be ordered
+	private Duration maxTime = Duration.ofHours(1); //time before pizza must be thrown out
+	
+	//Create variables so all methods can access them
+	private int quantity;
+	private LocalTime orderTime;
+	private LocalTime deliveryTime;
+	private String type;
+	private double price;
+	private double cost;
+	private double orderCost;
+	private double orderPrice;
+	private boolean contains;
 	
 	/**
 	 *  This class represents a pizza produced at the Pizza Palace restaurant.  A detailed description of the class's fields
@@ -32,7 +49,17 @@ public abstract class Pizza  {
 	 * 
 	 */
 	public Pizza(int quantity, LocalTime orderTime, LocalTime deliveryTime, String type, double price) throws PizzaException{
-		// TO DO	
+		LocalTime throwOutPizza = orderTime.plus(maxTime);
+		if (quantity < minOrder) throw new PizzaException("At least 1 pizza must be ordered");
+		if (quantity > maxOrder) throw new PizzaException("No more than 10 pizzas may be ordered");
+		if (deliveryTime.isAfter(throwOutPizza)) throw new PizzaException("An hour has elapsed, this pizza must be thrown out");
+		if (!(type == "PZM" || type == "PZL" || type == "PZV")) throw new PizzaException("This is an invalid pizza type");
+		
+		this.quantity = quantity;
+		this.orderTime = orderTime;
+		this.deliveryTime = deliveryTime;
+		this.type = type;
+		this.price = price;
 	}
 
 	/**
@@ -42,7 +69,14 @@ public abstract class Pizza  {
 	 * <P> POST: The cost field is set to sum of the Pizzas's toppings
 	 */
 	public final void calculateCostPerPizza(){
-		// TO DO
+		if(this.type == "PZM"){
+			this.cost = PizzaTopping.CHEESE.getCost() + PizzaTopping.TOMATO.getCost(); 
+		} else if(this.type == "PZL"){
+			this.cost = PizzaTopping.TOMATO.getCost() + PizzaTopping.CHEESE.getCost() + PizzaTopping.BACON.getCost() + PizzaTopping.PEPPERONI.getCost() + PizzaTopping.SALAMI.getCost();
+		} else if(this.type == "PZV"){
+			this.cost = PizzaTopping.TOMATO.getCost() + PizzaTopping.CHEESE.getCost() + PizzaTopping.CAPSICUM.getCost() + PizzaTopping.MUSHROOM.getCost() + PizzaTopping.EGGPLANT.getCost();
+		} 
+		
 	}
 	
 	/**
@@ -50,7 +84,8 @@ public abstract class Pizza  {
 	 * @return The amount that an individual pizza costs to make.
 	 */
 	public final double getCostPerPizza(){
-		// TO DO
+		calculateCostPerPizza();
+		return this.cost;
 	}
 
 	/**
@@ -58,7 +93,14 @@ public abstract class Pizza  {
 	 * @return The amount that an individual pizza is sold to the customer.
 	 */
 	public final double getPricePerPizza(){
-		// TO DO
+		if(this.type == "PZM"){
+			this.price = 8;
+		} else if(this.type == "PZL"){
+			this.price = 12;
+		} else if(this.type == "PZV"){
+			this.price = 10;
+		}
+		return this.price;
 	}
 
 	/**
@@ -66,7 +108,9 @@ public abstract class Pizza  {
 	 * @return The amount that the entire order costs to make, taking into account the type and quantity of pizzas. 
 	 */
 	public final double getOrderCost(){
-		// TO DO
+		this.orderCost = this.cost * this.quantity;
+		
+		return this.orderCost;
 	}
 	
 	/**
@@ -74,7 +118,9 @@ public abstract class Pizza  {
 	 * @return The amount that the entire order is sold to the customer, taking into account the type and quantity of pizzas. 
 	 */
 	public final double getOrderPrice(){
-		// TO DO
+		this.orderPrice = this.price * this.quantity;
+		
+		return this.orderPrice;
 	}
 	
 	
@@ -83,7 +129,9 @@ public abstract class Pizza  {
 	 * @return  Returns the profit made by the restaurant on the order which is the order price minus the order cost.
 	 */
 	public final double getOrderProfit(){
-		// TO DO
+		double profit = this.orderPrice - this.orderCost;
+		
+		return profit;
 	}
 	
 
@@ -93,7 +141,28 @@ public abstract class Pizza  {
 	 * @return Returns  true if the instance of Pizza contains the specified topping and false otherwise.
 	 */
 	public final boolean containsTopping(PizzaTopping topping){
-		// TO DO
+		
+		if(this.type == "PZM"){
+			if(topping == PizzaTopping.CHEESE || topping == PizzaTopping.TOMATO){
+				this.contains = true;
+			} else{
+				this.contains = false;
+			}
+		} else if(this.type == "PZL"){
+			if(topping == PizzaTopping.TOMATO || topping == PizzaTopping.CHEESE || topping == PizzaTopping.BACON || topping == PizzaTopping.PEPPERONI || topping == PizzaTopping.SALAMI){
+				this.contains = true;
+			}else{
+				this.contains = false;
+			}
+		} else if(this.type == "PZV"){
+			if(topping == PizzaTopping.TOMATO || topping == PizzaTopping.CHEESE || topping == PizzaTopping.EGGPLANT || topping == PizzaTopping.MUSHROOM || topping == PizzaTopping.CAPSICUM){
+				this.contains = true;
+			} else{
+				this.contains = false;
+			}
+		}
+		
+		return this.contains;
 	}
 	
 	/**
@@ -101,7 +170,7 @@ public abstract class Pizza  {
 	 * @return the quantity of pizzas ordered. 
 	 */
 	public final int getQuantity(){
-		// TO DO
+		return this.quantity;
 	}
 
 	/**
@@ -110,7 +179,7 @@ public abstract class Pizza  {
 	 * @return A human understandable description of the Pizza's type.
 	 */
 	public final String getPizzaType(){
-		// TO DO
+		return this.type;
 	}
 
 
