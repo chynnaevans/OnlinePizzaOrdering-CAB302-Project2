@@ -1,24 +1,13 @@
 package asgn2GUIs;
 
 import java.awt.event.ActionEvent;
-
-
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.text.DecimalFormat;
-
-import javax.swing.JPanel;
-import javax.swing.text.DefaultCaret;
-
 import asgn2Customers.Customer;
 import asgn2Exceptions.CustomerException;
 import asgn2Exceptions.LogHandlerException;
 import asgn2Exceptions.PizzaException;
 import asgn2Pizzas.Pizza;
 import asgn2Restaurant.PizzaRestaurant;
-
-import javax.swing.JFrame;
-
 import java.awt.*;
 import javax.swing.*;
 
@@ -31,6 +20,7 @@ import javax.swing.*;
  */
 public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionListener {
 	
+	// GUI ELEMENTS
 	private PizzaRestaurant restaurant;
 	private JFrame frame;
 	private JPanel pnl_main;
@@ -92,9 +82,6 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		// Log Display
 		pnl_main.add(pnl_logs, BorderLayout.CENTER);
 		pnl_logs.setLayout(tableLayout);
-		//pnl_logs.add(tbl_customers);
-		
-		
 		
 		// Calculation Display
 		pnl_main.add(pnl_text, BorderLayout.SOUTH);
@@ -105,7 +92,6 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		// Extra
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    frame.setVisible(true);
-
 	}
 
 	/*
@@ -114,12 +100,10 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 	@Override
 	public void run() {
 		restaurant = new PizzaRestaurant();
-
 		bttn_loadLog.addActionListener(this);
 		bttn_displayLog.addActionListener(this);
 		bttn_calculate.addActionListener(this);
 		bttn_reset.addActionListener(this);
-
 	}
 
 	/*
@@ -130,8 +114,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		if(e.getSource().equals(bttn_loadLog)) loadLog();
 		if(e.getSource().equals(bttn_displayLog)) displayLog();
 		if(e.getSource().equals(bttn_calculate)) calculate();
-		if(e.getSource().equals(bttn_reset)) reset();
-		
+		if(e.getSource().equals(bttn_reset)) reset();	
 	}
 	
 	/*
@@ -152,21 +135,23 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		}
 	}
 	
-	
+	/*
+	 * 	Displays two tables with the information loaded from the logs
+	 */
 	public void displayLog(){
-		String[] customer_clms = {"Name", "Phone", "Type","Location", "Distance"};
-		String[] pizza_clms = {"Type", "Quantity", "Price", "Cost", "Profit"};
-		
+		String[] customer_clms = new String[]{"Name", "Phone", "Type","Location", "Distance"};
+		String[] pizza_clms = new String[]{"Type", "Quantity", "Price", "Cost", "Profit"};
 		tbl_customers = new JTable(populateCustomerTable(customer_clms.length), customer_clms);
 		tbl_pizzas = new JTable(populatePizzaTable(pizza_clms.length), pizza_clms);
-		jsp_customers = new JScrollPane(tbl_customers);
-		jsp_pizzas = new JScrollPane(tbl_pizzas);
 		pnl_logs.add(tbl_customers);
 		pnl_logs.add(tbl_pizzas);
 		pnl_logs.updateUI();
 	}
 	
-	public String[][] populateCustomerTable(int columns){
+	/*
+	 *  Populates the Customer table with information from the logs
+	 */
+	private String[][] populateCustomerTable(int columns){
 		
 		String[][] customer_data = new String[restaurant.getNumCustomerOrders()][columns];
 		
@@ -175,8 +160,8 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 				Customer c = restaurant.getCustomerByIndex(i);
 				customer_data[i][0] = c.getName();
 				customer_data[i][1] = c.getMobileNumber();
-				customer_data[i][2] = c.getCustomerType();
-				customer_data[i][3] = Integer.toString(c.getLocationX()) + Integer.toString(c.getLocationY());
+				customer_data[i][2] = customerTypeToString(c.getCustomerType());
+				customer_data[i][3] = Integer.toString(c.getLocationX()) + "," + Integer.toString(c.getLocationY());
 				customer_data[i][4] = Double.toString(c.getDeliveryDistance());
 			} catch (CustomerException e) {
 				JOptionPane.showMessageDialog(frame,
@@ -189,7 +174,17 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		return customer_data;
 	}
 	
-	public String[][] populatePizzaTable(int columns){
+	private String customerTypeToString(String type){
+		if(type.equals("DVC")) return "Driver";
+		if(type.equals("DNC")) return "Drone";
+		if(type.equals("PUC")) return "Pick-Up";
+		return null;
+	}
+	
+	/*
+	 * Populates the pizza table with information from the logs
+	 */
+	private String[][] populatePizzaTable(int columns){
 			
 			String[][] pizza_data = new String[restaurant.getNumPizzaOrders()][columns];
 			
@@ -213,12 +208,18 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		}
 
 
+	/*
+	 * Displays the calculated information on total distance and profit
+	 */
 	public void calculate(){
 		tf_distance.setText("Total Distance = " + Double.toString(restaurant.getTotalDeliveryDistance()));
 		tf_profit.setText("Total Profit = " + Double.toString(restaurant.getTotalProfit()));
 		
 	}
 	
+	/*
+	 * Resets GUI elements so user can load another log
+	 */
 	public void reset(){
 		restaurant.resetDetails();
 		pnl_logs.remove(tbl_customers);
