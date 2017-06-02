@@ -39,22 +39,4 @@ public class RestaurantPizzaTests {
 		test.processLog(FILE);
 		test.getPizzaByIndex(knownInvalidIndex);
 	}
-	
-	//getNumPizzaOrders and getNumCustomerOrders return same value 
-	@Test
-	public void RestaurantPizza_CorrectOrderNumbers() throws PizzaException, LogHandlerException, CustomerException{
-		PizzaRestaurant test = new PizzaRestaurant();
-		test.processLog(FILE);
-		assert(test.getNumCustomerOrders() == test.getNumPizzaOrders());
-	}
-	
-	//correct profit is returned by getProfit method
-	@Test
-	public void RestaurantPizza_getProfit() throws PizzaException, LogHandlerException, CustomerException{
-		PizzaRestaurant test = new PizzaRestaurant();
-		test.processLog(FILE);
-		double knownProfit = 36.5;
-		assert(knownProfit == test.getTotalProfit());
-		
-	}
 }
