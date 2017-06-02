@@ -76,8 +76,11 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		pnl_buttons.setLayout(buttonLayout);
 		pnl_buttons.add(bttn_loadLog);
 		pnl_buttons.add(bttn_displayLog);
+		bttn_displayLog.setEnabled(false);
 		pnl_buttons.add(bttn_calculate);
+		bttn_calculate.setEnabled(false);
 		pnl_buttons.add(bttn_reset);
+		bttn_reset.setEnabled(false);
 		
 		// Log Display
 		pnl_main.add(pnl_logs, BorderLayout.CENTER);
@@ -133,6 +136,8 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 				    JOptionPane.WARNING_MESSAGE);
 			e.printStackTrace();
 		}
+		JOptionPane.showMessageDialog(pnl_main, "Log loaded sucessfully");
+		bttn_displayLog.setEnabled(true);
 	}
 	
 	/*
@@ -146,6 +151,9 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		pnl_logs.add(tbl_customers);
 		pnl_logs.add(tbl_pizzas);
 		pnl_logs.updateUI();
+		bttn_loadLog.setEnabled(false);
+		bttn_calculate.setEnabled(true);
+		bttn_reset.setEnabled(true);
 	}
 	
 	/*
@@ -212,8 +220,8 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 	 * Displays the calculated information on total distance and profit
 	 */
 	public void calculate(){
-		tf_distance.setText("Total Distance = " + Double.toString(restaurant.getTotalDeliveryDistance()));
-		tf_profit.setText("Total Profit = " + Double.toString(restaurant.getTotalProfit()));
+		tf_distance.setText("Total Distance = " + Double.toString(Math.round(restaurant.getTotalDeliveryDistance())) + " blocks");
+		tf_profit.setText("Total Profit = $" + Double.toString(Math.round(restaurant.getTotalProfit())));
 		
 	}
 	
@@ -228,6 +236,10 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		tbl_pizzas.removeAll();
 		tf_distance.setText("Distance");
 		tf_profit.setText("Profit");
+		bttn_loadLog.setEnabled(true);
+		bttn_displayLog.setEnabled(false);
+		bttn_calculate.setEnabled(false);
+		bttn_reset.setEnabled(false);
 		pnl_main.updateUI();
 	}
 }
