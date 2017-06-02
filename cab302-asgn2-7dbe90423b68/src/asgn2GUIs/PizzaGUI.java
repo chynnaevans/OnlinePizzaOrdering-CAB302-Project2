@@ -72,6 +72,9 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		bttn_displayLog = new JButton("Display Logs");
 		bttn_calculate = new JButton("Perform Calculation");
 		bttn_reset = new JButton("Reset Logs");
+		tf_distance = new JTextField ("Distance");
+		tf_profit = new JTextField("Profit");
+		
 		
 		// Main window
 		frame.setSize(500,500);

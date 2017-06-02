@@ -107,8 +107,8 @@ public class LogHandler {
 	 */
 	public static Pizza createPizza(String line) throws PizzaException, LogHandlerException{
 		String[] pizzArr = line.split(",");
-		String pizzaCode = pizzArr[-2];
-		int quantity = Integer.parseInt(pizzArr[-1]);
+		String pizzaCode = pizzArr[7];
+		int quantity = Integer.parseInt(pizzArr[8]);
 		LocalTime orderTime = LocalTime.parse(pizzArr[0]);
 		LocalTime deliveryTime = LocalTime.parse(pizzArr[1]);
 		
