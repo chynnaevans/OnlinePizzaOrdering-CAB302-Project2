@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="PizzaFactoryTests" project="cab302-asgn2-7dbe90423b68" tests="3" started="3" failures="0" errors="0" ignored="0">
+  <testsuite name="asgn2Tests.PizzaFactoryTests" time="0.0">
+    <testcase name="factoryMeatLovers" classname="asgn2Tests.PizzaFactoryTests" time="0.0"/>
+    <testcase name="factoryMagherita" classname="asgn2Tests.PizzaFactoryTests" time="0.0"/>
+    <testcase name="factoryVeg" classname="asgn2Tests.PizzaFactoryTests" time="0.0"/>
+  </testsuite>
+</testrun>

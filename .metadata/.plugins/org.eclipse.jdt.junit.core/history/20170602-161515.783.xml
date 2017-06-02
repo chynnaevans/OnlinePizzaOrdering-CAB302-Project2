@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="RestaurantCustomerTests" project="cab302-asgn2-7dbe90423b68" tests="4" started="4" failures="0" errors="0" ignored="0">
+  <testsuite name="asgn2Tests.RestaurantCustomerTests" time="0.011">
+    <testcase name="TestGetNumCustomerOrders_correct" classname="asgn2Tests.RestaurantCustomerTests" time="0.008"/>
+    <testcase name="TestGetCustomerByIndex_valid" classname="asgn2Tests.RestaurantCustomerTests" time="0.001"/>
+    <testcase name="TestGetTotalDeliveryDistance_corect" classname="asgn2Tests.RestaurantCustomerTests" time="0.0"/>
+    <testcase name="TestGetCustomerByIndex_invalid" classname="asgn2Tests.RestaurantCustomerTests" time="0.002"/>
+  </testsuite>
+</testrun>

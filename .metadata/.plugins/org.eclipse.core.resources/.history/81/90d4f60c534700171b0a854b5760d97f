@@ -1,0 +1,59 @@
+package asgn2Tests;
+import java.time.LocalTime;
+
+import org.junit.Test;
+
+import asgn2Exceptions.PizzaException;
+import asgn2Pizzas.Pizza;
+import asgn2Pizzas.PizzaFactory;
+
+/** 
+ * A class that tests the asgn2Pizzas.PizzaFactory class.
+ * 
+ * @author Person B 
+ * 
+ */
+public class PizzaFactoryTests {
+	
+	//Test that pizza factory correctly gets Magherita pizza
+	@Test
+	public void factoryMagherita() throws PizzaException{
+		LocalTime orderTime = LocalTime.now();
+		LocalTime deliverTime = LocalTime.now().plusMinutes(15);
+		Pizza pizza = PizzaFactory.getPizza("PZM", 1, orderTime, deliverTime);
+		assert(pizza.getPizzaType() == "PZM");
+}
+	//Test that pizza factory correctly gets Meat Lovers pizza
+	@Test
+	public void factoryMeatLovers() throws PizzaException{
+		LocalTime orderTime = LocalTime.now();
+		LocalTime deliverTime = LocalTime.now().plusMinutes(15);
+		Pizza pizza = PizzaFactory.getPizza("PZL", 1, orderTime, deliverTime);
+		assert(pizza.getPizzaType() == "PZL");
+}
+	//Test that pizza factory correctly gets Veg pizza
+	@Test
+	public void factoryVeg() throws PizzaException{
+		LocalTime orderTime = LocalTime.now();
+		LocalTime deliverTime = LocalTime.now().plusMinutes(15);
+		Pizza pizza = PizzaFactory.getPizza("PZV", 1, orderTime, deliverTime);
+		assert(pizza.getPizzaType() == "PZV");
+}
+	//Test that pizza factory correctly parses quantity
+	@Test
+	public void factoryQuantity() throws PizzaException{
+		int quantity = 2;
+		LocalTime orderTime = LocalTime.now();
+		LocalTime deliverTime = LocalTime.now().plusMinutes(15);
+		Pizza pizza = PizzaFactory.getPizza("PZM", quantity, orderTime, deliverTime);
+		assert(pizza.getQuantity() == quantity);
+}
+	//Test that pizza factory correctly throws pizza exception when unrecognised type is entered
+	@Test(expected = PizzaException.class)
+	public void factoryType() throws PizzaException{
+		LocalTime orderTime = LocalTime.now();
+		LocalTime deliverTime = LocalTime.now().plusMinutes(15);
+		Pizza pizza = PizzaFactory.getPizza("A", 1, orderTime, deliverTime);
+
+}
+}

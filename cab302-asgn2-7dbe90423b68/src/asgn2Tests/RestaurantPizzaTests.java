@@ -1,13 +1,60 @@
 package asgn2Tests;
 
+import java.util.ArrayList;
+
+import org.junit.Test;
+
+import asgn2Customers.Customer;
+import asgn2Customers.CustomerFactory;
+import asgn2Exceptions.CustomerException;
+import asgn2Exceptions.LogHandlerException;
+import asgn2Exceptions.PizzaException;
+import asgn2Restaurant.*;
 
 /**
  * A class that tests the methods relating to the handling of Pizza objects in the asgn2Restaurant.PizzaRestaurant class as well as
  * processLog and resetDetails.
  * 
- * @author Person B
+ * @author Chynna Evans
  *
  */
+
 public class RestaurantPizzaTests {
-	// TO DO
+	final static String FILE = ".//logs/20170101.txt";
+	
+	//Get pizza by index is correct
+	@Test
+	public void RestaurantPizza_GetByIndex() throws PizzaException, LogHandlerException, CustomerException{
+		int knownValidIndex = 0;
+		PizzaRestaurant test = new PizzaRestaurant();
+		test.processLog(FILE);
+		test.getPizzaByIndex(knownValidIndex);
+	}
+	
+	//Get pizza by invalid index is invalid
+	@Test(expected = PizzaException.class)
+	public void RestaurantPizza_GetByInvalidIndex() throws PizzaException, LogHandlerException, CustomerException{
+		int knownInvalidIndex = 30;
+		PizzaRestaurant test = new PizzaRestaurant();
+		test.processLog(FILE);
+		test.getPizzaByIndex(knownInvalidIndex);
+	}
+	
+	//getNumPizzaOrders and getNumCustomerOrders return same value 
+	@Test
+	public void RestaurantPizza_CorrectOrderNumbers() throws PizzaException, LogHandlerException, CustomerException{
+		PizzaRestaurant test = new PizzaRestaurant();
+		test.processLog(FILE);
+		assert(test.getNumCustomerOrders() == test.getNumPizzaOrders());
+	}
+	
+	//correct profit is returned by getProfit method
+	@Test
+	public void RestaurantPizza_getProfit() throws PizzaException, LogHandlerException, CustomerException{
+		PizzaRestaurant test = new PizzaRestaurant();
+		test.processLog(FILE);
+		double knownProfit = 36.5;
+		assert(knownProfit == test.getTotalProfit());
+		
+	}
 }

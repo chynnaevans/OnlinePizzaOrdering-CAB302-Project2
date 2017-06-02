@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="CustomerTests" project="cab302-asgn2-7dbe90423b68" tests="19" started="19" failures="0" errors="0" ignored="0">
+  <testsuite name="asgn2Tests.CustomerTests" time="0.001">
+    <testcase name="TestCustomerConstructor_Correct" classname="asgn2Tests.CustomerTests" time="0.001"/>
+    <testcase name="TestGetLocationX" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="TestGetLocationY" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="TestGetCustomerType" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="TestDVCDeliveryDistance_BothNegative" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="TestDVCDeliveryDistance_Positive" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="TestDNCDeliveryDistance_Postive" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="TestCustomerConstructor_ShortNumber" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="TestCustomerConstructor_BadNumber" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="TestCustomerConstructor_LongName" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="TestGetMobileNumber" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="TestCustomerConstructor_PickUpNotAtRestaurant" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="TestCustomerConstructor_DeliveryAtRestaurant" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="TestDNCDeliveryDistance_BothNegative" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="TestCustomerConstructor_LongNumber" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="TestGetName" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="TestCustomerConstructor_EmptyName" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="TestDNCDeliveryDistance_OneNegative" classname="asgn2Tests.CustomerTests" time="0.0"/>
+    <testcase name="TestDVCDeliveryDistance_OneNegative" classname="asgn2Tests.CustomerTests" time="0.0"/>
+  </testsuite>
+</testrun>
