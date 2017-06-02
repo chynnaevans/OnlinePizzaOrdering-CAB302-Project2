@@ -227,5 +227,6 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		tbl_pizzas.removeAll();
 		tf_distance.setText("Distance");
 		tf_profit.setText("Profit");
+		pnl_main.updateUI();
 	}
 }
