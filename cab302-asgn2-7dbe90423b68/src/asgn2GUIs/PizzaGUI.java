@@ -187,7 +187,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 	
 	public String[][] populatePizzaTable(int columns){
 			
-			String[][] pizza_data = new String[restaurant.getNumPizzaOrders())][columns];
+			String[][] pizza_data = new String[restaurant.getNumPizzaOrders()][columns];
 			
 			for(int i = 0; i < restaurant.getNumPizzaOrders(); i++){
 				try {
@@ -197,7 +197,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 					pizza_data[i][2] = Double.toString(p.getOrderPrice());
 					pizza_data[i][3] = Double.toString(p.getOrderCost());
 					pizza_data[i][4] = Double.toString(p.getOrderProfit());
-				} catch (CustomerException e) {
+				} catch (PizzaException e) {
 					JOptionPane.showMessageDialog(frame,
 						    e.getMessage(),
 						    "Something Went Wrong...",
