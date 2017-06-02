@@ -158,6 +158,8 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 	
 	/*
 	 *  Populates the Customer table with information from the logs
+	 *  @param number of columns in the table
+	 *  @return the customer data in a 2D array
 	 */
 	private String[][] populateCustomerTable(int columns){
 		
@@ -182,6 +184,9 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		return customer_data;
 	}
 	
+	/*
+	 * 	Translates the shorthand notation into user friendly phrases
+	 */
 	private String customerTypeToString(String type){
 		if(type.equals("DVC")) return "Driver";
 		if(type.equals("DNC")) return "Drone";
@@ -191,6 +196,8 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 	
 	/*
 	 * Populates the pizza table with information from the logs
+	 * @param the number of columns in the table
+	 * @return the pizza dataset in a 2D array
 	 */
 	private String[][] populatePizzaTable(int columns){
 			
@@ -241,5 +248,6 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		bttn_calculate.setEnabled(false);
 		bttn_reset.setEnabled(false);
 		pnl_main.updateUI();
+		JOptionPane.showMessageDialog(pnl_main, "System reset");
 	}
 }
