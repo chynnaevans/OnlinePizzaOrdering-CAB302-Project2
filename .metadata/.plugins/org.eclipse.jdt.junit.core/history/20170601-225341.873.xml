@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="PizzaTests" project="cab302-asgn2-7dbe90423b68" tests="12" started="12" failures="0" errors="0" ignored="0">
+  <testsuite name="asgn2Tests.PizzaTests" time="0.0">
+    <testcase name="TestPizzaConstructor_tooManyPizza" classname="asgn2Tests.PizzaTests" time="0.0"/>
+    <testcase name="TestMagheritaCostperPizza" classname="asgn2Tests.PizzaTests" time="0.0"/>
+    <testcase name="TestPizzaConstructor_forML_WrongCode" classname="asgn2Tests.PizzaTests" time="0.0"/>
+    <testcase name="TestPizzaConstructor_forML_Correct" classname="asgn2Tests.PizzaTests" time="0.0"/>
+    <testcase name="TestPizzaConstructor_tooShort" classname="asgn2Tests.PizzaTests" time="0.0"/>
+    <testcase name="TestPizzaConstructor_forMargherita_WrongCode" classname="asgn2Tests.PizzaTests" time="0.0"/>
+    <testcase name="TestPizzaConstructor_forVeg_WrongCode" classname="asgn2Tests.PizzaTests" time="0.0"/>
+    <testcase name="TestPizzaConstructor_forMargherita_Correct" classname="asgn2Tests.PizzaTests" time="0.0"/>
+    <testcase name="TestPizzaConstructor_noPizza" classname="asgn2Tests.PizzaTests" time="0.0"/>
+    <testcase name="TestPizzaConstructor_forVeg_Correct" classname="asgn2Tests.PizzaTests" time="0.0"/>
+    <testcase name="TestPizzaConstructor_WrongCode" classname="asgn2Tests.PizzaTests" time="0.0"/>
+    <testcase name="TestPizzaConstructor_tooLong" classname="asgn2Tests.PizzaTests" time="0.0"/>
+  </testsuite>
+</testrun>

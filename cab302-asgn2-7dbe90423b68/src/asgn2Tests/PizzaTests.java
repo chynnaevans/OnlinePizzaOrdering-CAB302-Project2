@@ -124,11 +124,134 @@ public class PizzaTests {
 	//Pizza correctly calculates cost of Magherita pizza
 	@Test
 	public void TestMagheritaCostperPizza() throws PizzaException{
+		double knownCost = 1.5;
 		LocalTime orderTime = LocalTime.now();
 		LocalTime deliverTime = LocalTime.now().plusMinutes(15);
-		Pizza c = PizzaFactory.getPizza("PZM", 10, orderTime, deliverTime);
-		double h = c.getCostPerPizza();
-		assert(h == 8);
+		Pizza pizza = PizzaFactory.getPizza("PZM", 10, orderTime, deliverTime);
+		double cost = pizza.getCostPerPizza();
+		assert(cost == knownCost);
 	}
+	
+	//Pizza correctly calculates cost of Meat Lovers pizza
+		@Test
+		public void TestMeatLoversCostperPizza() throws PizzaException{
+			double knownCost = 5;
+			LocalTime orderTime = LocalTime.now();
+			LocalTime deliverTime = LocalTime.now().plusMinutes(15);
+			Pizza pizza = PizzaFactory.getPizza("PZL", 10, orderTime, deliverTime);
+			double cost = pizza.getCostPerPizza();
+			assert(cost == knownCost);
+		}
+		
+		//Pizza correctly calculates cost of Veg pizza
+		@Test
+		public void TestVegCostperPizza() throws PizzaException{
+			double knownCost = 5.5;
+			LocalTime orderTime = LocalTime.now();
+			LocalTime deliverTime = LocalTime.now().plusMinutes(15);
+			Pizza pizza = PizzaFactory.getPizza("PZV", 10, orderTime, deliverTime);
+			double cost = pizza.getCostPerPizza();
+			assert(cost == knownCost);
+		}
+		
+		//Pizza correctly returns the price of a pizza
+		@Test
+		public void TestPriceperPizza() throws PizzaException{
+			double knownPrice = 10;
+			LocalTime orderTime = LocalTime.now();
+			LocalTime deliverTime = LocalTime.now().plusMinutes(15);
+			Pizza pizza = PizzaFactory.getPizza("PZV", 10, orderTime, deliverTime);
+			double price = pizza.getPricePerPizza();
+			assert(price == knownPrice);
+		}
+		
+		//Get order cost is correct
+		@Test
+		public void testOrderCost() throws PizzaException{
+			double knownCost = 3;
+			LocalTime orderTime = LocalTime.now();
+			LocalTime deliverTime = LocalTime.now().plusMinutes(15);
+			Pizza pizza = PizzaFactory.getPizza("PZM", 2, orderTime, deliverTime);
+			double orderCost = pizza.getOrderCost();
+			assert(orderCost == knownCost);
+		}
+		
+		//Get order price is correct
+		@Test
+		public void testOrderPrice() throws PizzaException{
+			double knownPrice = 16;
+			LocalTime orderTime = LocalTime.now();
+			LocalTime deliverTime = LocalTime.now().plusMinutes(15);
+			Pizza pizza = PizzaFactory.getPizza("PZM", 2, orderTime, deliverTime);
+			double orderPrice = pizza.getOrderPrice();
+			assert(orderPrice == knownPrice);
+		}
+		
+		//Get order profit is correct
+		@Test
+		public void testOrderProfit() throws PizzaException{
+			double knownProfit = 13;
+			LocalTime orderTime = LocalTime.now();
+			LocalTime deliverTime = LocalTime.now().plusMinutes(15);
+			Pizza pizza = PizzaFactory.getPizza("PZM", 2, orderTime, deliverTime);
+			double orderProfit = pizza.getOrderProfit();
+			assert(orderProfit == knownProfit);
+		}
+		
+		//Test that getTopping returns correct
+		@Test
+		public void testGetTopping_Correct() throws PizzaException{
+			
+			LocalTime orderTime = LocalTime.now();
+			LocalTime deliverTime = LocalTime.now().plusMinutes(15);
+			Pizza pizza = PizzaFactory.getPizza("PZM", 2, orderTime, deliverTime);
+			
+			assert(pizza.containsTopping(PizzaTopping.CHEESE) == true);
+		}
+		
+		//Test that getTopping returns false when untrue
+		@Test
+		public void testGetTopping_Wrong() throws PizzaException{
+			
+			LocalTime orderTime = LocalTime.now();
+			LocalTime deliverTime = LocalTime.now().plusMinutes(15);
+			Pizza pizza = PizzaFactory.getPizza("PZM", 2, orderTime, deliverTime);
+			boolean contains = pizza.containsTopping(PizzaTopping.BACON);
+			assert(contains == false);
+		}
+		
+		//Test if get quantity returns correct value
+		@Test
+		public void testGetQuantity() throws PizzaException{
+			int quantity = 2;
+			LocalTime orderTime = LocalTime.now();
+			LocalTime deliverTime = LocalTime.now().plusMinutes(15);
+			Pizza pizza = PizzaFactory.getPizza("PZM", quantity, orderTime, deliverTime);
+			
+			assert(pizza.getQuantity() == quantity);
+		}
+		
+		//Test that getPizzaType will return correct type
+		@Test
+		public void testGetType() throws PizzaException{
+			String type = "PZM";
+			LocalTime orderTime = LocalTime.now();
+			LocalTime deliverTime = LocalTime.now().plusMinutes(15);
+			Pizza pizza = PizzaFactory.getPizza(type, 2, orderTime, deliverTime);
+			assert(pizza.getPizzaType() == type);
+		}
+		
+		//Test that equals will return true for equal pizas
+		@Test
+		public void testEquals_true() throws PizzaException{
+			String type = "PZM";
+			int quantity = 1;
+			LocalTime orderTime = LocalTime.now();
+			LocalTime deliverTime = LocalTime.now().plusMinutes(15);
+			Pizza pizza1 = PizzaFactory.getPizza(type, quantity, orderTime, deliverTime);
+			Pizza pizza2 = PizzaFactory.getPizza(type, quantity, orderTime, deliverTime);
+			
+			assert(pizza1.equals(pizza2));
+		}
 	
 }
