@@ -93,7 +93,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		pnl_main.add(pnl_logs, BorderLayout.CENTER);
 		pnl_logs.setLayout(tableLayout);
 		//pnl_logs.add(tbl_customers);
-		//jsp_customers = new JScrollPane(tbl_customers);
+		
 		
 		
 		// Calculation Display
@@ -163,6 +163,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		jsp_pizzas = new JScrollPane(tbl_pizzas);
 		pnl_logs.add(tbl_customers);
 		pnl_logs.add(tbl_pizzas);
+		pnl_logs.updateUI();
 	}
 	
 	public String[][] populateCustomerTable(int columns){
@@ -213,16 +214,18 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 
 
 	public void calculate(){
-		tf_distance = new JTextField(Double.toString(restaurant.getTotalDeliveryDistance()));
-		tf_profit = new JTextField(Double.toString(restaurant.getTotalProfit()));
+		tf_distance.setText("Total Distance = " + Double.toString(restaurant.getTotalDeliveryDistance()));
+		tf_profit.setText("Total Profit = " + Double.toString(restaurant.getTotalProfit()));
 		
 	}
 	
 	public void reset(){
 		restaurant.resetDetails();
+		pnl_logs.remove(tbl_customers);
+		pnl_logs.remove(tbl_pizzas);
 		tbl_customers.removeAll();
 		tbl_pizzas.removeAll();
-		tf_distance.setText("");
-		tf_profit.setText("");
+		tf_distance.setText("Distance");
+		tf_profit.setText("Profit");
 	}
 }
