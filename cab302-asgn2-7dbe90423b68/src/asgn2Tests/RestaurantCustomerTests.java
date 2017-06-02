@@ -21,6 +21,7 @@ public class RestaurantCustomerTests {
 	
 	final static String FILE = ".//logs/20170101.txt";
 	
+	//correctly returns by index
 	@Test
 	public void TestGetCustomerByIndex_valid() throws CustomerException, LogHandlerException, PizzaException{	
 		PizzaRestaurant test = new PizzaRestaurant();
@@ -28,6 +29,7 @@ public class RestaurantCustomerTests {
 		test.getCustomerByIndex(0);
 	}
 	
+	//correctly returns error if invalid index
 	@Test(expected = CustomerException.class)
 	public void TestGetCustomerByIndex_invalid() throws CustomerException, LogHandlerException, PizzaException{	
 		PizzaRestaurant test = new PizzaRestaurant();
@@ -35,6 +37,7 @@ public class RestaurantCustomerTests {
 		test.getCustomerByIndex(10);
 	}
 	
+	//correctly gets number of customer orders
 	@Test
 	public void TestGetNumCustomerOrders_correct() throws CustomerException, LogHandlerException, PizzaException{	
 		PizzaRestaurant test = new PizzaRestaurant();
@@ -42,6 +45,7 @@ public class RestaurantCustomerTests {
 		assert(3 == test.getNumCustomerOrders());
 	}
 	
+	//correctly gets total delivery distance
 	@Test
 	public void TestGetTotalDeliveryDistance_corect() throws CustomerException, LogHandlerException, PizzaException{	
 		PizzaRestaurant test = new PizzaRestaurant();

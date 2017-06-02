@@ -1,0 +1,30 @@
+package asgn2Tests;
+package asgn2Tests;
+
+import org.junit.Test;
+
+import java.util.ArrayList;
+import asgn2Exceptions.*;
+import asgn2Pizzas.*;
+import asgn2Restaurant.LogHandler;
+
+import java.time.LocalTime;
+
+
+/** A class that tests the methods relating to the creation of Pizza objects in the asgn2Restaurant.LogHander class.
+* 
+* @author Person B
+* 
+*/
+public class LogHandlerPizzaTests {
+	//Test if correctly populates array
+	@Test
+	public void populatePizzaArray() throws PizzaException, LogHandlerException{
+		ArrayList<Pizza> list = new ArrayList<Pizza>();
+		LocalTime orderTime = LocalTime.NOON.plusHours(9).plusMinutes(17);
+		LocalTime deliveryTime = orderTime.plusMinutes(10)
+		list.add(PizzaFactory.getPizza("PZV", 5, orderTime, deliveryTime));
+		
+		ArrayList<Pizza> test = LogHandler.populatePizzaDataset(".//logs/pizzaTest.txt")
+	}
+}

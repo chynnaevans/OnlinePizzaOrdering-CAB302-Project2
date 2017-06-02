@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="CustomerFactoryTests" project="cab302-asgn2-7dbe90423b68" tests="7" started="7" failures="0" errors="0" ignored="0">
+  <testsuite name="asgn2Tests.CustomerFactoryTests" time="0.0">
+    <testcase name="TestgetCustomer_WrongCustomerType" classname="asgn2Tests.CustomerFactoryTests" time="0.0"/>
+    <testcase name="TestgetCustomer_NumberFormatWrong" classname="asgn2Tests.CustomerFactoryTests" time="0.0"/>
+    <testcase name="TestgetCustomer_NumberLengthShort" classname="asgn2Tests.CustomerFactoryTests" time="0.0"/>
+    <testcase name="TestgetCustomer_CorrectDNC" classname="asgn2Tests.CustomerFactoryTests" time="0.0"/>
+    <testcase name="TestgetCustomer_CorrectDVC" classname="asgn2Tests.CustomerFactoryTests" time="0.0"/>
+    <testcase name="TestgetCustomer_CorrectPUC" classname="asgn2Tests.CustomerFactoryTests" time="0.0"/>
+    <testcase name="TestgetCustomer_NumberLengthLong" classname="asgn2Tests.CustomerFactoryTests" time="0.0"/>
+  </testsuite>
+</testrun>
